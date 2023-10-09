@@ -1,0 +1,48 @@
+.search {
+    font-size: 17px;
+}
+
+
+
+.sideNav {
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif !important;
+    color: var(--primary) !important;
+    padding: 10px;
+    width: 90%;
+
+}
+
+.sideNav:hover {
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Ubuntu', sans-serif !important;
+    background-color: rgb(133, 133, 133);
+
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
+@media (max-width: 1000px) {
+    .NavSide {
+        height: 100% !important;
+        width: 80% !important;
+    }
+}
+
+.Logout {
+    background-color: rgb(210, 210, 210);
+    border-radius: 11px;
+    padding: 9px;
+}
+
+@media only screen and (max-width: 960px) {
+    .nav-header .brand-logo {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: center;
+    }
+}

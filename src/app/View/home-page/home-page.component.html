@@ -1,0 +1,271 @@
+<nav class="navbar navbar-expand-lg  rounded sticky-xxl-top NavBg">
+    <div class="container navBg">
+        <div class="navbar-brand">
+            <img src="assets/bg1.png" alt="bg1" height="40px" width="auto">
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto  mb-lg-0 justify-content-center"
+                style="display:flexbox; justify-content: center;">
+
+                <li class="nav-item">
+                    <a class="nav-link active font" aria-current="page" routerLink="homeContent">HOME</a>
+                </li>
+
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle font" routerLink="category" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        CATEGORY
+                    </a>
+                    <ul class="dropdown-menu" id="dropdown">
+                        <li><a class="dropdown-item font" style="color: black;"
+                                *ngFor="let item of category">{{item.blogCategoryName}}</a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link font" routerLink="contact">CONTACT</a>
+                </li>
+            </ul>
+            <form class="nav-item  me-3" role="search">
+                <i class="bi bi-search search font" data-bs-toggle="modal" data-bs-target="#search"></i>
+            </form>
+            <div>
+                <div class="custom-control custom-switch nav-item ">
+                    <mat-slide-toggle (change)="toggleDarkTheme($event)"></mat-slide-toggle>
+                </div>
+            </div>
+            <div class=" nav-item "> {{isChecked ? 'Dark Mode' : 'Light Mode'}}</div>
+            <div class=" nav-item  Sign  font  ms-3" *ngIf="profileNotLogin" data-bs-toggle="modal"
+                data-bs-target="#signIn">
+                SIGN IN
+            </div>
+            <div class=" nav-item profile ms-3 dropdown" *ngIf="profileLogin">
+                <img src="{{userImage}}" class="profile dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                    style="border-radius: 50%;border: rgb(255, 255, 255) solid 1px;" alt="image">
+                <div class="dropdown-menu">
+                    <li><a class="dropdown-item">Hello {{userName}}</a></li>
+                    <li (click)="logout()"><a class="dropdown-item" href="#">
+                            Log out <i class="bi bi-box-arrow-in-right" style="color: black;"></i></a></li>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!--SignIn Modal -->
+<div class="modal fade " id="signIn" tabindex="-1" aria-labelledby="Sign In Label" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header" style="align-items: center;">
+                <h1 class="modal-title fs-5 " id="exampleModalLabel" style="text-align: center;">{{signUp ?
+                    SignUpName:LoginName}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" *ngIf="signIn">
+
+                <!-- Sign In -->
+                <div *ngIf="fhideSignIn">
+                    <form [formGroup]="signInForm" (ngSubmit)="updateLogin()">
+                        <input type="email" class="form-control" placeholder="User Name" name="" id=""
+                            formControlName="userName">
+                        <input type="password" class="form-control mt-3" placeholder="Password" name="" id=""
+                            formControlName="password">
+                        <button type="submit" class="btn btn-primary mt-3" style="margin:auto; width: 100%;"
+                            [disabled]="!signInForm.valid"><span class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true" *ngIf="spinner"></span>Log
+                            In</button>
+                        <p style="color: red;" *ngIf="errorSignIN">Enter Correct credientials</p>
+                        <p class="mt-1">New user? <a class="font" (click)="signUpComponent()">Sign up</a></p>
+                        <p class="mt-1 " (click)="fPassword()"> <a class="font">Forgot Password</a></p>
+                    </form>
+                </div>
+
+
+                <!-- OTPRequest Forgot Password -->
+                <div class="" *ngIf="fEmail">
+                    <form [formGroup]="forgotForm">
+                        <input type="text" class="form-control" placeholder="Enter Email" name="" id=""
+                            formControlName="email">
+                        <p *ngIf="forgorError">User name not found</p>
+                        <button class="btn btn-primary mt-2" type="submit" (click)="forgotPassword()"
+                            style="width: 100%;" [disabled]="!forgotForm.valid"><span
+                                class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                *ngIf="spinner"></span>Get OTP</button>
+                    </form>
+                </div>
+
+                <!-- OTPEnter and New password Forgot Password -->
+                <div *ngIf="fOtp">
+                    <form [formGroup]="passwordform">
+                        <!--  -->
+                        <input type="text" class="form-control" placeholder="Enter Email" name="" id=""
+                            formControlName="email">
+                        <!--  -->
+                        <input type="text" class="form-control mt-3" placeholder="Enter 6 digit Otp" name="" id=""
+                            formControlName="otp">
+                        <!--  -->
+                        <input type="text" class="form-control mt-3" placeholder="Create New Password" name="" id=""
+                            formControlName="password">
+                        <div class="error-messages">
+                            <div *ngFor="let error of error_messages.password">
+                                <div class="error-message"
+                                    *ngIf="passwordform.get('password')?.hasError(error.type) && (passwordform.get('password')?.dirty || passwordform.get('password')?.touched)">
+                                    {{ error.message }}
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <input type="text" class="form-control mt-3" placeholder="Confirm New Password" name="" id=""
+                            formControlName="newPassword">
+                        <div class="error-messages">
+                            <div *ngFor="let error of error_messages.newPassword">
+                                <div class="error-message"
+                                    *ngIf="passwordform.get('newPassword')?.hasError(error.type) && (passwordform.get('newPassword') || passwordform.get('newPassword')?.touched)">
+                                    {{ error.message }}
+                                </div>
+                            </div>
+                            <span *ngIf="f['newPassword'].getError('Mustmatch')!=null" class="text-danger">Password
+                                Doesn't Matched</span>
+                        </div>
+
+                        <button class="btn btn-primary mt-2" type="submit" style="width: 100%;" (click)="confirmPass()"
+                            [disabled]="!passwordform.valid">Reset</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="modal-body" *ngIf="signUp">
+                <form [formGroup]="signUpForm">
+                    <!--  -->
+                    <input type="text" class="form-control" placeholder="Name" name="" id=""
+                        formControlName="firstName">
+                    <!--  -->
+                    <input type="text" class="form-control mt-3" placeholder="Email" name="" id=""
+                        formControlName="email">
+                    <!--  -->
+                    <input type="text" class="form-control mt-3" placeholder="Password" name="" id=""
+                        formControlName="password">
+                    <button type="button" class="btn btn-primary mt-3" style="margin:auto; width: 100%;"
+                        [disabled]="!signUpForm.valid">Create
+                        account</button>
+                    <p style="color: green;">Account Created Successfully</p>
+                    <p class="mt-1 ">Already have a Account? <a class="font" (click)="signInComponent()">Sign In</a></p>
+                </form>
+            </div>
+
+            <hr>
+            <p style="text-align: center;">or</p>
+            <div style="text-align: center;" class="mt-2 mb-4">
+                <i class="bi bi-google loginIcons" style="font-size: 30px;"></i>
+                <i class="bi bi-github ms-4 loginIcons" style="font-size: 30px;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--search Modal -->
+<div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" placeholder="Search here">
+                <hr>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<!-- Footer -->
+<footer class="container-fluid footer">
+    <div class="container">
+        <div class="d-flex flex-wrap align-content-start">
+            <div class="p-1  ms-5 float-start">
+                <img src="assets/bg1.png" height="50px" width="auto" class="mt-5">
+                <h1 class="font mt-2" style="color: white;">Blog</h1>
+
+                <h4 class="font" style="color: white;"><i class="bi bi-envelope-paper" style="color: white;"></i>
+                    blog@mail.com</h4>
+                <h4 class="font" style="color: white;"><i class="bi bi-telephone" style="color: white;"></i>
+                    +044-94543543</h4>
+                <address style="color: white;">
+                    <i class="bi bi-geo-alt"></i>
+                    No.35,Vadapalani St,Chennai - 600026
+                </address>
+                <iframe class="mb-4"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7773.481585590017!2d80.20625199763047!3d13.052164299082573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5266bf5a08c45f%3A0x9478e1cd7e7f1723!2sVadapalani%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1692861898196!5m2!1sen!2sin"
+                    width="200px" height="100px" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+            <div class="p-2 flex-grow-1  ms-5">
+                <h4 class="mt-5" style="color: white;">For Admin Login</h4>
+                <div>
+                    <h5 class="font" style="color: white;" routerLink="../adminHome/adminDashboard">Login
+                    </h5>
+                </div>
+
+            </div>
+            <div class="p-2 flex-grow-1  ms-5">
+                <h4 class=" mt-5" style="color: white;">Category</h4>
+                <div *ngFor="let category of category">
+                    <h5 class="font" style="color: white;">{{category.blogCategoryName}}</h5>
+                </div>
+
+            </div>
+            <div class="p-2 flex-grow-1  ms-5">
+                <h4 class=" mt-5" style="color: white;">For any queries</h4>
+                <input type="text" class="form-control me-5 mb-3" style="width: 50%;" placeholder="gokul@mail.com"
+                    aria-label="Server">
+                <textarea type="text" class="form-control me-5" style="width: 60%; height: 20%;" placeholder="Type here"
+                    aria-label="Server"></textarea>
+                <button class="btn btn-primary mt-2 mb-4">Send</button>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<div class="container-fluid fo2">
+    <h3>Copyright ©Gokul Blog. All Rights Reserved. Crafted ❤️ by Gokul</h3>
+</div>
+
+<!--Admin Login Modal -->
+<!-- <div class="modal fade " id="adminLogin" tabindex="-1" aria-labelledby="Sign In Label" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header" style="align-items: center;">
+                <h1 class="modal-title fs-5 " id="exampleModalLabel" style="text-align: center;">Log In</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="text" class="form-control" placeholder="User Name" name="" id="">
+                    <input type="text" class="form-control mt-3" placeholder="Password" name="" id="">
+                    <button type="button" routerLink="../adminHome/adminDashboard" class="btn btn-primary mt-3"
+                        style="margin:auto; width: 100%;" data-bs-dismiss="modal">Log In</button>
+                </form>
+            </div>
+            <hr>
+            <p style="text-align: center;">or</p>
+            <div style="text-align: center;" class="mt-2 mb-4">
+                <i class="bi bi-google loginIcons" style="font-size: 30px;"></i>
+                <i class="bi bi-github ms-4 loginIcons" style="font-size: 30px;"></i>
+            </div>
+        </div>
+    </div>
+</div> -->

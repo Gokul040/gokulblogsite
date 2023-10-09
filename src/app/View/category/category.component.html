@@ -1,0 +1,27 @@
+<!-- Category -->
+<div class="container my-5" *ngIf="blogCategory">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" style="cursor: pointer;"><a routerLink="../homeContent">Home</a></li>
+            <li class="breadcrumb-item" style="cursor: pointer;"><a routerLink="../category">Category</a></li>
+        </ol>
+    </nav>
+
+    <h1 class=" categoryHeader" style="text-align: center;">Categories</h1>
+    <mat-drawer-container class="example-container ">
+        <mat-drawer-content>
+            <div class="example-sidenav-content flex-container" fxLayout="row wrap" fxLayout.xs="column"
+                fxLayoutAlign="space-evenly center">
+                <mat-card (click)="getCategoryid(item.id)" (click)="getCategorybyName(item.blogCategoryName)"
+                    class="example-card my-3" data-aos="fade-right" *ngFor="let item of formModel"
+                    routerLink="../bloglist">
+
+                    <img mat-card-image src="{{item.categoryImage}}" alt="img1" class="content-image">
+                    <mat-card-content>
+                        <h2 style="text-align: center;" class="my-2">{{item.blogCategoryName}}</h2>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

@@ -1,0 +1,19 @@
+.contact-container {
+    background: rgb(228, 161, 151);
+    background: radial-gradient(circle, rgba(228, 161, 151, 1) 0%, rgba(244, 218, 228, 1) 0%, rgba(211, 240, 247, 1) 100%);
+}
+
+.content img {
+    border-radius: 15px;
+}
+
+@media only screen and (max-width:800px) {
+    /* .image {
+        visibility: hidden;
+    } */
+
+    /* .justify-content-evenly {
+        justify-content: center !important;
+    } */
+
+}

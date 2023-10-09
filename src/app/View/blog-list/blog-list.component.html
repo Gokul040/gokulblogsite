@@ -1,0 +1,48 @@
+<!-- Contents -->
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" style="cursor: pointer;"><a routerLink="../homeContent">Home</a></li>
+            <li class="breadcrumb-item" style="cursor: pointer;"><a routerLink="../category">Category</a></li>
+            <li class="breadcrumb-item" style="cursor: pointer;"><a>{{categoryName}}</a></li>
+        </ol>
+    </nav>
+
+    <h1 class="categoryHeader" style="text-align: center;">Angular</h1>
+    <mat-drawer-container class="example-container ">
+        <!-- <p>Test</p> -->
+
+        <mat-drawer-content>
+            <div class="example-sidenav-content flex-container" fxLayout="row wrap" fxLayout.xs="column"
+                fxLayoutAlign="space-evenly center">
+
+                <mat-card class="example-card my-3" data-aos="fade-right" *ngFor="let item of formModel">
+
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+                        <mat-card-title>{{item.blogTitle}}</mat-card-title>
+                        <mat-card-subtitle>{{item.author}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <img mat-card-image src="{{item.blogImage1}}" alt="img1" class="content-image">
+                    <mat-card-content>
+                        <h2 style="text-align: left;" class="my-2">{{item.category.blogCategoryName}}</h2>
+                        <p>{{item.blogImage1.st1Paragraph1}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <p *ngIf="unlike" (click)="likeButton()"><i class="bi bi-hand-thumbs-up ms-2">
+                            </i>{{item.likeCount}}</p>
+                        <p *ngIf="like" (click)=" unlikeButton()"><i
+                                class="bi bi-hand-thumbs-up-fill ms-2"></i>{{item.likeCount}}</p>
+                        <p><i class="bi bi-eye ms-3 me-1"></i>{{item.totalView}}</p>
+                        <p><i class="bi bi-pencil ms-3">{{item.createdDate | date : "dd/MM/yyyy"}}</i></p>
+                        <p class="ms-3" style="color: blue; text-decoration: underline;" routerLink="../blogpage"
+                            (click)="getBlogId(item.id)">Read
+                            More
+                        </p>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

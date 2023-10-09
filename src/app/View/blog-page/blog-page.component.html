@@ -1,0 +1,72 @@
+<!-- Blog -->
+
+<div class="container my-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" style="cursor: pointer;"><a routerLink="../homeContent">Home</a></li>
+            <li class="breadcrumb-item" style="cursor: pointer;"><a routerLink="../category">Category</a></li>
+            <li class="breadcrumb-item" style="cursor: pointer;"><a
+                    routerLink="../bloglist">{{viewData.category.blogCategoryName}}</a></li>
+            <li class="breadcrumb-item" style="cursor: pointer;"><a>{{viewData.blogTitle}}</a></li>
+        </ol>
+    </nav>
+
+    <h1>{{viewData.blogTitle}}</h1>
+    <h3>written by {{viewData.author}}</h3>
+    <p>{{viewData.createdDate | date : "dd/MM/yyyy"}}</p>
+    <img src=" {{viewData.blogImage1}}" alt="img1" height="200px" width="auto">
+    <div>
+
+        <h2>{{viewData.subTopic1}}</h2>
+        <img src="{{viewData.blogImage2}}" alt="img1" height="200px" width="auto">
+        <h3>
+            {{viewData.st1Paragraph1}}
+        </h3>
+
+        <h3>
+            {{viewData.st1Paragraph2}}
+        </h3>
+        <h3>
+            {{viewData.st1Paragraph3}}
+        </h3>
+        <h2>{{viewData.subTopic2}}</h2>
+        <img src="{{viewData.blogImage2}}" alt="img1" height="200px" width="auto">
+        <h3>
+            {{viewData.st2Paragraph4}}
+        </h3>
+        <h3>
+            {{viewData.st2Paragraph5}}
+        </h3>
+        <h3>
+            {{viewData.st2Paragraph6}}
+        </h3>
+
+
+        <h2>For More</h2>
+    </div>
+    <mat-drawer-container class="example-container ">
+        <!-- <p>Test</p> -->
+        <mat-drawer-content>
+            <div class="example-sidenav-content flex-container" fxLayout="row wrap" fxLayout.xs="column"
+                fxLayoutAlign="space-evenly center">
+
+                <mat-card class="example-card my-3" data-aos="fade-right" *ngFor="let item of blogListData">
+
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>
+                        <mat-card-title>{{item.blogTitle}}</mat-card-title>
+                        <mat-card-subtitle>{{item.author}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <img mat-card-image src="{{item.blogImage1}}" alt="img1" class="content-image">
+                    <mat-card-content>
+                        <h2 style="text-align: left;" class="my-2">{{item.subTopic1}}</h2>
+                        <p>{{item.st1Paragraph1}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+
+
+</div>

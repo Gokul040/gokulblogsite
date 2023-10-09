@@ -1,0 +1,256 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+:root {
+    --primary: #000000;
+    --secondary: #ffffff;
+    /* --primary-hover: #d3ffff;
+    --primary-dark: #f4f4f4; */
+    --card_bgcolor: #f0eeee;
+    --card_hover: #f4f4f4;
+    --card_text: #000000;
+    --rgba-primary-1: rgba(91, 207, 197, 0.1);
+    --rgba-primary-2: rgba(91, 207, 197, 0.2);
+    --rgba-primary-3: rgba(91, 207, 197, 0.3);
+    --rgba-primary-4: rgba(91, 207, 197, 0.4);
+    --rgba-primary-5: rgba(91, 207, 197, 0.5);
+    --rgba-primary-6: rgba(91, 207, 197, 0.6);
+    --rgba-primary-7: rgba(91, 207, 197, 0.7);
+    --rgba-primary-8: rgba(91, 207, 197, 0.8);
+    --rgba-primary-9: rgba(91, 207, 197, 0.9);
+    --title: #000;
+    --bs-navbar-color: var(--secondary) !important;
+    --bs-nav-link-color: var(--secondary) !important;
+    --bs-emphasis-color-rgb: var(--primary), 0.65 !important;
+    --bs-modal-bg: var(var(--primary) !important);
+    --bs-card-box-shadow: none !important;
+    /* --bs-body-bg: var(--secondary) !important; */
+    --bs-card-bg: var(--primary) !important;
+    --bs-body-bg-rgb: var(--secondary) !important;
+    --bs-bg-opacity: none !important;
+}
+
+*,
+html,
+body {
+    font-family: 'Ubuntu', sans-serif !important;
+    color: var(--primary);
+
+}
+
+body {
+    background-color: var(--secondary);
+}
+
+.font:hover {
+    color: #8cc0ff !important;
+    text-shadow: 0 4px 8px rgba(131, 190, 252, 1);
+    -webkit-text-shadow: 0 4px 8px rgba(131, 190, 252, 1);
+    -moz-text-shadow: 0 4px 8px rgba(131, 190, 252, 1);
+    cursor: pointer;
+
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.categoryHeader {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.flex-container {
+    display: flex !important;
+    justify-content: space-evenly !important;
+
+}
+
+.example-card {
+    border-radius: 15px !important;
+    background-color: var(--card_bgcolor) !important;
+    color: var(--primary) !important;
+}
+
+.example-card:hover {
+    border-radius: 15px !important;
+    background-color: var(--card_hover) !important;
+    color: var(--primary) !important;
+    cursor: pointer;
+}
+
+.content-image {
+    border-radius: 15px;
+}
+
+@media (max-width: 800px) {
+    .flex-container {
+        justify-content: flex-start !important;
+        margin: 0 !important;
+    }
+
+}
+
+.view-more {
+    margin-left: 10px;
+}
+
+.arrow-icon {
+    font-size: 40px;
+    color: #d8e3f0;
+    transition: 0.3s;
+}
+
+@keyframes rotate {
+    from {
+        animation: forwards;
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.arrow-icon:hover {
+    font-size: 60px;
+    color: #05090f;
+    transition: 0.3s;
+    transform: translateX(5px);
+    cursor: pointer;
+}
+
+.footer {
+    background-color: #2e2e2e;
+    height: 300px;
+}
+
+.example-container {
+    display: inline !important;
+}
+
+.mat-typography {
+    background-color: var(--secondary);
+}
+
+/* .bac-color {
+    background: rgb(228, 161, 151);
+    background: radial-gradient(circle, rgba(228, 161, 151, 1) 0%, rgba(249, 238, 242, 1) 0%, rgba(241, 249, 251, 1) 100%);
+
+} */
+
+.btn-info {
+    color: #ffffff !important;
+    background-color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+    box-shadow: none !important;
+}
+
+.adminHead {
+    text-align: left;
+    text-shadow: 0 0 3px #b4faf2, 0 0 5px #f4d8d8;
+    text-decoration: underline;
+    color: var(--primary) !important;
+
+}
+
+.dataTables_wrapper .dataTables_paginate span .paginate_button {
+    background-color: #ffffff;
+
+    border-radius: 5px;
+    padding: 1px !important;
+    color: var(--secondary) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate span .paginate_button:hover {
+    background-color: #d1f9ff !important;
+    color: #05090f !important;
+    border-radius: 5px;
+    padding: 1px !important;
+    color: var(--secondary) !important;
+
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+    background-color: #ffffff !important;
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 1px !important;
+    color: var(--secondary) !important;
+
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous.hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next.hover {
+    background-color: #ffffff !important;
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 1px !important;
+    color: var(--secondary) !important;
+
+}
+
+.dataTables_wrapper .dataTables_paginate span .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate span .paginate_button:hover {
+    color: var(--secondary) !important;
+    background-color: var(--primary) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.next.disabled {
+    background-color: rgb(255, 255, 255) !important;
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 1px !important;
+    color: var(--secondary) !important;
+}
+
+/* .bg-dark {
+    --bs-bg-opacity: 1 !important;
+} */
+/* .modal {
+    background-color: var(--bs-modal-bg) !important;
+} */
+.modal-content {
+    background-color: var(--secondary) !important;
+}
+
+.NavSide {
+    width: 20% !important;
+    height: 100% !important;
+}
+
+.offcanvas-header,
+.offcanvas-body {
+    background-color: var(--secondary) !important;
+}
+
+.offcanvas-header .btn-close {
+    background-color: white !important;
+}
+
+.tbContent {
+    color: var(--primary) !important;
+}
+
+.form-control {
+    background-color: white !important;
+}
+
+.modal-header .btn-close {
+    background-color: #8f8d8d !important;
+    color: var(--secondary) !important;
+}
+
+.NavBg {
+    background-color: var(--secondary) !important;
+}
+
+.togglerColor {
+    background-color: #f2f2f2 !important;
+    border-radius: 5px !important;
+}

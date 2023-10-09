@@ -1,0 +1,77 @@
+.navbar-nav {
+    margin: auto !important;
+}
+
+/* 
+.Sign {
+    margin-left: auto;
+} */
+/* body {
+    background-color: rgb(216, 255, 255) !important;
+} */
+.nav-item .dropdown-menu {
+    display: none;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    border-radius: 15px;
+    border: solid #6099DE 0px;
+    box-shadow: 4px 4px 15px rgba(211, 240, 247, 1);
+    -webkit-box-shadow: 4px 4px 15px rgba(211, 240, 247, 1);
+    -moz-box-shadow: 4px 4px 15px rgba(211, 240, 247, 1);
+}
+
+.footer {
+    height: auto !important;
+    width: 100% !important;
+}
+
+.loginIcons:hover {
+    color: #8cc0ff;
+    cursor: pointer;
+}
+
+.search {
+    font-size: 17px;
+}
+
+@media (max-width: 1000px) {
+    .Sign {
+        margin-left: 0 !important;
+    }
+
+}
+
+.fo2 {
+    background-color: rgb(43, 42, 42);
+    padding: 15px;
+}
+
+.fo2 h3 {
+    color: rgb(74, 73, 73);
+    text-align: center;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: all .1s ease-in-out;
+}
+
+.show-scrollTop {
+    opacity: 1;
+    transition: all .1s ease-in-out;
+}
+
+.profile {
+    height: 45px !important;
+    width: auto;
+    border-radius: 50;
+
+}

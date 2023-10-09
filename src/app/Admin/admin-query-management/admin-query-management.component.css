@@ -1,0 +1,15 @@
+.nav-item {
+    background-color: rgb(14, 153, 86);
+    border-radius: 10px;
+    margin-left: 15px;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255);
+}
+
+.nav-item .active {
+    background-color: rgb(157, 210, 192);
+    border-radius: 10px;
+
+}
